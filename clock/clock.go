@@ -19,7 +19,11 @@ func New(hour, minute int) *Clock {
 	minuteHours := minute / 60
 	hour += minuteHours
 	minute %= 60
-	hour %= 24
+	if hour < 0 {
+		hour = 24 + hour%24
+	} else {
+		hour %= 24
+	}
 	return &Clock{hour, minute}
 }
 
