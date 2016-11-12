@@ -16,16 +16,16 @@ type Clock struct {
 
 // New instantiates a Clock with the minutes and seconds you provide.
 func New(hour, minute int) *Clock {
-	extraHours := minute / 60
-	minutes := minute - 60*extraHours
-	fmt.Println(extraHours)
-	totalHours := (hour + extraHours) % 24
-	return &Clock{totalHours, minutes}
+	minuteHours := minute / 60
+	hour += minuteHours
+	minute %= 60
+	hour %= 24
+	return &Clock{hour, minute}
 }
 
 func (c Clock) String() string {
 	clockString := fmt.Sprintf("%v:%v", c.Hour, c.Minute)
-	timeObj, err := time.Parse("3:4", clockString)
+	timeObj, err := time.Parse("15:4", clockString)
 	if err != nil {
 		fmt.Println(err)
 	}
