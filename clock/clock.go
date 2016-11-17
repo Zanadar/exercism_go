@@ -46,5 +46,5 @@ func (c Clock) String() string {
 
 //Add returns a clock with minutes added
 func (c *Clock) Add(minutes int) Clock {
-	return Clock{}
+	return *New(c.Hour, c.Minute+minutes)
 }
