@@ -16,9 +16,19 @@ type Clock struct {
 
 // New instantiates a Clock with the minutes and seconds you provide.
 func New(hour, minute int) *Clock {
-	minuteHours := minute / 60
-	hour += minuteHours
-	minute %= 60
+	if minute < 0 {
+		hourMinutes := (hour * 60) + minute
+		totalMinutes := (24 * 60) + hourMinutes
+		fmt.Printf("hour %v minutes: %v \n", hour, minute)
+		fmt.Printf("hourMinutes: %v totalMinutes: %v \n", hourMinutes, totalMinutes)
+
+		hour = (totalMinutes / 60) % 24
+		minute = totalMinutes % 60
+	} else {
+		minuteHours := minute / 60
+		hour += minuteHours
+		minute %= 60
+	}
 	if hour < 0 {
 		hour = 24 + hour%24
 	} else {
