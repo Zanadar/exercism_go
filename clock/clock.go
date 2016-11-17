@@ -15,7 +15,7 @@ type Clock struct {
 }
 
 // New instantiates a Clock with the minutes and seconds you provide.
-func New(hour, minute int) *Clock {
+func New(hour, minute int) Clock {
 	if minute < 0 {
 		hourMinutes := ((hour * 60) + minute) % 1440
 		totalMinutes := ((24 * 60) + hourMinutes)
@@ -31,7 +31,7 @@ func New(hour, minute int) *Clock {
 	} else {
 		hour %= 24
 	}
-	return &Clock{hour, minute}
+	return Clock{hour, minute}
 }
 
 func (c Clock) String() string {
@@ -45,6 +45,6 @@ func (c Clock) String() string {
 }
 
 //Add returns a clock with minutes added
-func (c *Clock) Add(minutes int) Clock {
-	return *New(c.Hour, c.Minute+minutes)
+func (c Clock) Add(minutes int) Clock {
+	return New(c.Hour, c.Minute+minutes)
 }
