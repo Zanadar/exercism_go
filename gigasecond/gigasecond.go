@@ -1,9 +1,6 @@
 package gigasecond
 
-import (
-	"fmt"
-	"time"
-)
+import "time"
 
 const testVersion = 4
 
@@ -11,6 +8,5 @@ const testVersion = 4
 func AddGigasecond(t time.Time) time.Time {
 	giga := 1000000000
 	gigasecond := time.Duration(giga) * time.Second
-	fmt.Printf("giga %v, gigasecond %v\n", giga, gigasecond)
 	return t.Add(gigasecond)
 }
